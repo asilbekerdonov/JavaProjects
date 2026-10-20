@@ -18,13 +18,18 @@ public class Pizza {
     }
 
     public void setTitle(String title) {
-        String t = title == null ? "" : title.trim();
-        if (title != null  &&  title.length() > 2 && title.length() < 30) {
-            this.title = title;
+        if (title == null) {
+            throw new IllegalArgumentException("Название не может быть null");
         }
-        else {
-            System.out.println("Enter valid title!");
+        String trimmed = title.trim();
+        if (trimmed.length() < 2 || trimmed.length() > 30) {
+            throw new IllegalArgumentException(
+                    "Название должно быть от 2 до 30 символов, получено: " + trimmed.length()
+            );
+
         }
+        this.title = trimmed;
+
 
     }
 

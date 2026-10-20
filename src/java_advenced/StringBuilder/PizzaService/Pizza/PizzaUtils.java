@@ -15,15 +15,13 @@ public class PizzaUtils {
                 trimmed.substring(1).toLowerCase(Locale.ROOT);
     }
 
-    public static String formatPrice(double cost) {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append(cost)
-                .append("-")
-                .append(String.format(Locale.ROOT,"%2f", cost))
+    public static String formatPrice(String title, double cost) {
+        return  new StringBuilder()
+        .append(title)
+                .append(" — ")
+                .append(String.format(Locale.ROOT,"%.2f", cost))
                 .append(" ₽")
                 .toString();
-        return sb.toString();
     }
 
 
@@ -31,15 +29,11 @@ public class PizzaUtils {
         StringBuilder sb = new StringBuilder();
 
         for(int i = 0; i < pizzas.size(); i++) {
-            Pizza pizza = pizzas.get(i);
+            if (i > 0) sb.append(System.lineSeparator());
+            Pizza p = pizzas.get(i);
             sb.append(i + 1)
-                    .append(". ")
-                    .append(pizza.getTitle())
-                    .append("-")
-                    .append(String.format(Locale.ROOT, "%.2f", pizza.getCost()))
-                    .append(" ₽")
-                    .append(System.lineSeparator());
-
+                .append(". ")
+                    .append(formatPrice(p.getTitle(), p.getCost()));
         }
         return sb.toString();
     }
