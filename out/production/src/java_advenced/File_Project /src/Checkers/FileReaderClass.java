@@ -8,7 +8,7 @@ public class FileReaderClass {
         long startTime = System.currentTimeMillis();
         long errorCount = 0;
 
-        try (FileReader fr = new FileReader("textfile.txt")) {
+        try (FileReader fr = new FileReader("source.txt")) {
             int code;
             StringBuilder currentLine = new StringBuilder();
 
